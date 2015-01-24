@@ -7,6 +7,7 @@ $( document ).ready(function() {
 	  $(".x").text("X: "+event.pageX);
 	  $(".y").text("Y: "+event.pageY);
 	});
+  
 
 
 });
