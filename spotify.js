@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var myDataRef = new Firebase('https://theremouse.firebaseio.com/');
+
 	var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 
 	theremin = new Theremin(audioCtx);
@@ -8,6 +10,11 @@ $(document).ready(function() {
 		$(".y").text("Y: " + event.pageY);
 
 		theremin.update(event.pageX, event.pageY);
+		myDataRef.push({pitch: theremin.pitch, volume: theremin.volume});
+		myDataRef.on('child_added', function(snapshot) {
+			debugger
+			console.log(snapshot)
+		});
 	});
 
 });
