@@ -11,8 +11,8 @@
   <body>
     <div id="container"></div>
 
-    <script src="lib/leap.min.js"></script>
-    <script src="lib/three.js"></script>
+<!--     <script src="lib/leap.min.js"></script>
+ -->    <script src="lib/three.js"></script>
     <script src="lib/jquery.min.js"></script>
     <script src="lib/stats.min.js"></script>
     <script src="lib/dat.gui.min.js"></script>
@@ -36,16 +36,16 @@
     <script src="lib/RiggedSkeleton.js"></script>
     <script src="lib/Loader.js"></script>
     
-    <!-- THESE ALWAYS GOES LAST -->
+    <script type="text/javascript" src="js/libs/AudioDetector.js"></script>
+    <script type="text/javascript" src="js/libs/AudioContextMonkeyPatch.js"></script>
+    <script type="text/javascript" src="js/libs/RequestAnimationFrame.js"></script>
+    <script type="text/javascript" src="js/libs/MIDIUtils.js"></script>
+    <script type="text/javascript" src="js/Theremin.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script src="Global.js"></script>
 
 
     <script>
-
-      // TODO: 
-      // Write shaders for hands
-
-     //G.audio.mute.gain.value = 0;
 
 
       G.loader.addLoad();
@@ -57,7 +57,6 @@
       G.shaders.shaderSetLoaded = function(){
         G.loader.onLoad();
       }
-
       G.loadTextures();
 
       G.addToStartArray( function(){
@@ -107,20 +106,27 @@
           transparent: true,
 
         });
-       
+      
         var titleMesh = new THREE.Mesh( titleGeo , titleMat );
 
         titleMesh.position.z = -600;
 
         G.scene.add( titleMesh );
 
-
-
       }.bind( G ) );
 
-
-
     </script>
+
+    <div id="toggle"><span></span></div>
+      
+      <div id="controls" class="inactive">
+        <div id="frequency"><span></span></div>
+        <div><span id="note"></span></div>
+      </div>
+      <div>by <a href="http://5013.es">5013</a>.<br /><br /><a href="http://flattr.com/thing/923353/theremin-js" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a> </div>
+    </div>
+
+    <div id="pointer" class="inactive"></div>
 
   </body>
 </html>

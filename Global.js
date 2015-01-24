@@ -4,13 +4,13 @@ var G = {};
 
 G.texturesToLoad = [
  
-  ['gold'   , 'img/iri/comboWet.png'],
-  ['turq'   , 'img/iri/neonYellowPurp.png'],
+  ['gold'   , 'img/iri/gold.png'],
+  ['turq'   , 'img/iri/turq.png'],
 
   //['sand'  , 'img/normals/moss_normal_map.jpg' ],
- // ['sand'  , 'img/normals/sand.png' ],
+ // ['sand'  , 'img/spotifypeople.png' ],
   // ['sand'  , 'img/normals/waternormals.jpg' ],
-  //['sand'  , 'img/normals/carbonFiber.png' ],
+  ['sand'  , 'img/greenattack.png' ],
   ['text'  , 'img/boy.png' ]
 
 ]
@@ -28,7 +28,7 @@ G.loader  = new Loader();
 
 G.audio   = new AudioController();
 G.shaders = new ShaderLoader( 'shaders' );
-G.leap    = new Leap.Controller();
+// G.leap    = new Leap.Controller();
 //G.gui     = new dat.GUI({});
 G.stats   = new Stats();
 
@@ -92,10 +92,10 @@ G.container.appendChild( G.renderer.domElement );
 G.stats.domElement.id = 'stats';
 //document.body.appendChild( G.stats.domElement );
 
-G.leap.connect();
+// 
 //G.gui.close();
 G.scene.add( G.camera );
-//G.onResize();
+G.onResize();
 
 G.tween = TWEEN;
 
@@ -162,52 +162,52 @@ G.init = function(){
     new THREE.MeshBasicMaterial({color:0xffffff})
 
   );
-  this.rHand = new RiggedSkeleton( this.leap , this.camera , {
+  // this.rHand = new RiggedSkeleton( this.leap , this.camera , {
   
-    movementSize: 1000,
-    handSize:     100,
+  //   movementSize: 1000,
+  //   handSize:     100,
 
-  });
+  // });
   
  // this.rHand.addScaledMeshToAll( rHandMesh );
 
   //this.rHand.hand.add( smallMesh );
-  this.rHand.addToScene( this.scene );
+  // this.rHand.addToScene( this.scene );
 
-  this.rHand.relative = new THREE.Vector3();
-
-
+  // this.rHand.relative = new THREE.Vector3();
 
 
-  var lHandMesh = new THREE.Mesh( 
-    new THREE.BoxGeometry( 10 , 10, 100 ),
-    new THREE.MeshBasicMaterial( 0xff0000 )
-  );
+
+
+  // var lHandMesh = new THREE.Mesh( 
+  //   new THREE.BoxGeometry( 10 , 10, 100 ),
+  //   new THREE.MeshBasicMaterial( 0xff0000 )
+  // );
  
-  this.lHand = new RiggedSkeleton( this.leap , this.camera ,  {
+  // this.lHand = new RiggedSkeleton( this.leap , this.camera ,  {
   
-    movementSize: 1000,
-    handSize:     100,
+  //   movementSize: 1000,
+  //   handSize:     100,
 
-  });
+  // });
   
   //this.lHand.addScaledMeshToAll( rHandMesh );
 
-  var sm = smallMesh.clone();
-  this.lHand.hand.add( sm );
-  this.lHand.addToScene( this.scene );
+  // var sm = smallMesh.clone();
+  // this.lHand.hand.add( sm );
+  // this.lHand.addToScene( this.scene );
 
-  this.lHand.relative = new THREE.Vector3();
+  // this.lHand.relative = new THREE.Vector3();
 
-  console.log( 'HAND' );
-  console.log( this.lHand );
+  // console.log( 'HAND' );
+  // console.log( this.lHand );
 
     
   this.objectControls = new ObjectControls( 
-    this.camera , 
-    this.rHand.hand , 
-    this.leap  
-  );
+    this.camera 
+  //   this.rHand.hand , 
+  //   this.leap  
+   );
 
   this.mouse = this.objectControls.unprojectedMouse;
   this.raycaster = this.objectControls.raycaster;
@@ -241,11 +241,11 @@ G.updateIntersection = function(){
 
   G.tmpV3.copy( this.mouse );
 
-  if( this.objectControls.leap === true ){
+  // if( this.objectControls.leap === true ){
 
-    G.tmpV3.copy(this.rHand.hand.position);
+  //   G.tmpV3.copy(this.rHand.hand.position);
  
-  }
+  // }
   
   G.tmpV3.sub( this.camera.position );
   G.tmpV3.normalize();
@@ -275,8 +275,8 @@ G.animate = function(){
   
   if( !this.paused ){
 
-     this.dT.value = this.clock.getDelta();  
-  this.timer.value += G.dT.value;
+    this.dT.value = this.clock.getDelta();  
+    this.timer.value += G.dT.value;
 
     this.tween.update();
 
@@ -285,15 +285,15 @@ G.animate = function(){
 
     this.audio.update();
 
-    this.rHand.update( 0 );
-    this.lHand.update( 1 );
+    // this.rHand.update( 0 );
+    // this.lHand.update( 1 );
 
 
-    this.rHand.relative.copy( this.rHand.hand.position );
-    this.rHand.relative.sub( this.position );
+    // this.rHand.relative.copy( this.rHand.hand.position );
+    // this.rHand.relative.sub( this.position );
     
-    this.lHand.relative.copy( this.lHand.hand.position );
-    this.lHand.relative.sub( this.position );
+    // this.lHand.relative.copy( this.lHand.hand.position );
+    // this.lHand.relative.sub( this.position );
 
     this.iPoint.relative.copy( this.iPoint );
     this.iPoint.relative.sub( this.position );
@@ -473,4 +473,5 @@ G.loadTexture = function( name , file ){
 
 window.addEventListener( 'resize'   , G.onResize.bind( G )  , false );
 window.addEventListener( 'keydown'  , G.onKeyDown.bind( G ) , false );
+
 
