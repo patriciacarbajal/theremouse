@@ -1,10 +1,24 @@
-function Theremin(oscillator, gainNode){
+function Theremin(audioCtx){
 	this.pitch;
 	this.volume;
-	this.oscillator = oscillator;
-	this.gainNode = gainNode;
+	this.gainNode = this.makeGainNode(audioCtx);
+	this.oscillator = this.makeOscillator(audioCtx);
 }
 
+Theremin.prototype.makeOscillator = function(audioCtx) {
+	var oscillator = audioCtx.createOscillator();
+	oscillator.connect(this.gainNode);
+	oscillator.type = 'square';
+	oscillator.detune.value = 10 // value in cents
+	oscillator.start();
+	return oscillator;
+}
+
+Theremin.prototype.makeGainNode = function(audioCtx) {
+	var gainNode = audioCtx.createGain();
+	gainNode.connect(audioCtx.destination);
+	return gainNode;
+}
 
 Theremin.prototype.update = function(xCoord, yCoord){
 	this.updatePitch(xCoord);
@@ -23,5 +37,5 @@ Theremin.prototype.updateVolume = function(yCoord){
 
 Theremin.prototype.updateOscillator = function(){
 	this.oscillator.detune.value =  theremin.pitch * 5000
-	this.gainNode.gain.value = this.volume 
+	this.gainNode.gain.value = this.volume
 }
