@@ -11,6 +11,10 @@ $(document).ready(function() {
 
 		theremin.update(event.pageX, event.pageY);
 		myDataRef.push({pitch: theremin.pitch, volume: theremin.volume});
+		myDataRef.on('child_added', function(snapshot) {
+			debugger
+			console.log(snapshot)
+		});
 	});
 
 });
