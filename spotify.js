@@ -1,26 +1,25 @@
-console.log("HI")
-$( document ).ready(function() {
-    console.log( "ready!" );
+$(document).ready(function() {
+	audioContext = new AudioContext();
 
-	$(document).mousemove(function(event){
+	var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 
-	  $(".x").text("X: "+event.pageX);
-	  $(".y").text("Y: "+event.pageY);
+	var oscillator = audioCtx.createOscillator();
+	var gainNode = audioCtx.createGain();
+
+	oscillator.connect(gainNode);
+	gainNode.connect(audioCtx.destination);
+
+	oscillator.type = 'square';
+	oscillator.detune.value = 10 // value in cents
+	oscillator.start();
+	theremin = new Theremin(oscillator, gainNode);
+
+	$(document).mousemove(function(event) {
+		$(".x").text("X: " + event.pageX);
+		$(".y").text("Y: " + event.pageY);
+
+		theremin.update(event.pageX, event.pageY);
 	});
-
 
 });
 
-// function mouse_position()
-// {
-//     var e = window.event;
-
-//     var posX = e.clientX;
-//     var posY = e.clientY;
-
-//     document.Form1.posx.value = posX;
-//     document.Form1.posy.value = posY;
-
-//     var t = setTimeout("mouse_position()",100);
-
-// }
