@@ -34,8 +34,7 @@ Theremin.prototype.updateVolume = function(yCoord){
 	this.volume = 1 - (yCoord / window.innerHeight);
 }
 
-
 Theremin.prototype.updateOscillator = function(){
-	this.oscillator.detune.value =  theremin.pitch * 5000
+	this.oscillator.detune.value =  this.pitch * 5000
 	this.gainNode.gain.value = this.volume
 }
