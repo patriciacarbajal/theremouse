@@ -6,12 +6,14 @@ $(document).ready(function() {
 	var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 
 	$(document).mousemove(function(event) {
-		$(".x").text("X: " + event.pageX);
-		$(".y").text("Y: " + event.pageY);
+    var x = event.pageX;
+    var y = event.pageY;
+		$(".x").text("X: " + x);
+		$(".y").text("Y: " + y);
 
-		myDataRef.push({xCoord: event.pageX, yCoord: event.pageY, userId: userId});
+		myDataRef.push({xCoord: x, yCoord: y, userId: userId});
 
-    updateView();
+    updateView(x, y);
 	});
 
 	myDataRef.on('child_added', function(snapshot) {
@@ -30,11 +32,9 @@ $(document).ready(function() {
   setInterval(function() {myDataRef.remove()}, 5000)
 });
 
-function updateView() {
+function updateView(axisX, axisY) {
   var width = $('body').width();
   var height = $('body').height();
-  var axisX = event.pageX;
-  var axisY = event.pageY;
 
   var hue = Math.floor(axisX / width * 360);
   var saturation = Math.floor(axisY / height * 100);
