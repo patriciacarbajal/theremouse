@@ -38,7 +38,7 @@ $(document).ready(function() {
   });
 
 });
->>>>>>> spotify.html conflict fix
+
 
 });
 
