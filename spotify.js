@@ -23,30 +23,6 @@ $(document).ready(function() {
 	var x = snapshot.val().xCoord;
 	var y = snapshot.val().yCoord;
 	theremins[userId].update(x, y);
-
-});
- 
- //  $('.line1').hover(function() {
- //      $('body').css('background-color', 'f8f087').fadeIn(3000);
- //  })
- //  $('.line2').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', 'b7e3c0');
- //  })
- //  $('.line3').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', 'ffc48c');
- //  })
- //  $('.line4').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', 'dbbae5');
- //  })
- // $('.line5').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', 'f39dd4');
- //  })
- //   $('.line6').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', 'eecaf5');
- //  })
- //     $('.line7').hover(function() {
- //    $("body").fadeIn('slow').css('background-color', '95fefd');
- //  })
       
   $('body').mousemove(function(event) {
     var width = $('body').width(),
@@ -60,6 +36,8 @@ $(document).ready(function() {
  
     $('body').css('background', 'hsl(' + hue + ',' + saturation + '%, ' + lightness + '%)');
   });
+
+});
 >>>>>>> spotify.html conflict fix
 
 });
