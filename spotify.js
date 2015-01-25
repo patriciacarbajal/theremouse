@@ -15,7 +15,6 @@ $(document).ready(function() {
 
 	});
 
-<<<<<<< HEAD
 	myDataRef.on('child_added', function(snapshot) {
 	if (!theremins[userId]) {
 		var theremin = new Theremin(audioCtx);
@@ -61,8 +60,7 @@ $(document).ready(function() {
  
     $('body').css('background', 'hsl(' + hue + ',' + saturation + '%, ' + lightness + '%)');
   });
-
->>>>>>> visual overhaul
+>>>>>>> spotify.html conflict fix
 
 });
 
