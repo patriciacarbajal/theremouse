@@ -14,6 +14,7 @@ $(document).ready(function() {
 		setInterval(function() {myDataRef.remove()}, 5000)
 
 	myDataRef.on('child_added', function(snapshot) {
+    var userId = snapshot.val().userId;
   	if (!theremins[userId]) {
   		var theremin = new Theremin(audioCtx);
   		theremins[userId.toString()] = theremin;
