@@ -10,6 +10,8 @@ $(document).ready(function() {
 		$(".y").text("Y: " + event.pageY);
 
 		myDataRef.push({xCoord: event.pageX, yCoord: event.pageY, userId: userId});
+
+    updateView();
 	});
 		setInterval(function() {myDataRef.remove()}, 5000)
 
@@ -22,21 +24,18 @@ $(document).ready(function() {
   	var x = snapshot.val().xCoord;
   	var y = snapshot.val().yCoord;
   	theremins[userId].update(x, y);
-
-    $('body').mousemove(function(event) {
-      var width = $('body').width();
-      var height = $('body').height();
-      var axisX = event.pageX;
-      var axisY = event.pageY;
-
-      var hue = Math.floor(axisX / width * 360);
-      var saturation = Math.floor(axisY / height * 100);
-      var lightness = Math.floor(axisY / height * 100);
-
-      $('body').css('background', 'hsl(' + hue + ',' + saturation + '%, ' + lightness + '%)');
-    });
-
   });
-
 });
 
+function updateView() {
+  var width = $('body').width();
+  var height = $('body').height();
+  var axisX = event.pageX;
+  var axisY = event.pageY;
+
+  var hue = Math.floor(axisX / width * 360);
+  var saturation = Math.floor(axisY / height * 100);
+  var lightness = Math.floor(axisY / height * 100);
+
+  $('body').css('background', 'hsl(' + hue + ',' + saturation + '%, ' + lightness + '%)');
+}
