@@ -24,14 +24,14 @@ $(document).ready(function() {
   	theremins[userId].update(x, y);
 
     $('body').mousemove(function(event) {
-      var width = $('body').width(),
-       height = $('body').height(),
-       axisX = event.pageX,
-       axisY = event.pageY;
+      var width = $('body').width();
+      var height = $('body').height();
+      var axisX = event.pageX;
+      var axisY = event.pageY;
 
-      var hue = Math.floor(axisX / width * 360),
-       saturation = Math.floor(axisY / height * 100),
-       lightness = Math.floor(axisY / height * 100);
+      var hue = Math.floor(axisX / width * 360);
+      var saturation = Math.floor(axisY / height * 100);
+      var lightness = Math.floor(axisY / height * 100);
 
       $('body').css('background', 'hsl(' + hue + ',' + saturation + '%, ' + lightness + '%)');
     });
