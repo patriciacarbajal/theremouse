@@ -13,7 +13,6 @@ $(document).ready(function() {
 
     updateView();
 	});
-		setInterval(function() {myDataRef.remove()}, 5000)
 
 	myDataRef.on('child_added', function(snapshot) {
     var userId = snapshot.val().userId;
@@ -25,6 +24,10 @@ $(document).ready(function() {
   	var y = snapshot.val().yCoord;
   	theremins[userId].update(x, y);
   });
+
+  // clean the database every 5 seconds
+  // it's only used for the real time polyphonic feature
+  setInterval(function() {myDataRef.remove()}, 5000)
 });
 
 function updateView() {
