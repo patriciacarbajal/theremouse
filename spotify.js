@@ -11,6 +11,7 @@ $(document).ready(function() {
 
 		myDataRef.push({xCoord: event.pageX, yCoord: event.pageY, userId: userId});
 	});
+		setInterval(function() {myDataRef.remove()}, 5000)
 
 	myDataRef.on('child_added', function(snapshot) {
     
